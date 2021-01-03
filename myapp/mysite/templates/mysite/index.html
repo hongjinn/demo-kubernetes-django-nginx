@@ -1,0 +1,25 @@
+{% load static %}
+
+<html>
+    <head>
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>Home Page</title>
+        {% endif %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container mt-4">
+            <h1>Hello World Template Site (please change me)</h1>
+            <br>
+            <h5>To edit this page go to: myproject/myapp/mysite/templates/mysite/index.html</h5>
+            <h5>That may seem like an overly verbose path but that comes from the Django naming convention</h5>
+            <br>
+            <h5>To add images like the one below go to myproject/myapp/mysite/static/mysite/</h5>
+            <h5>After which do "python manage.py collectstatic" which updates the static folder that Nginx looks at</h5>
+            <br>
+            <img src="{% static 'mysite/under_construction.png' %}" alt="Under Construction">
+        </div>
+    </body>
+</html>

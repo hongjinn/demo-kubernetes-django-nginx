@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  django_gunicorn:
+    container_name: container_django_gunicorn
+    volumes:
+      - static:/myproject/myapp/static
+      - db:/myproject/myapp/sqlite
+    env_file:
+      - .env
+    build:
+      context: .
+    image: img_django_gunicorn
+    ports:
+      - "8000:8000"
+  nginx:
+    container_name: container_nginx
+    build: ./nginx
+    image: img_nginx
+    volumes:
+      - static:/static
+      - certs:/etc/letsencrypt/live
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - django_gunicorn
+volumes:
+  static:
+  db:
+  certs:
