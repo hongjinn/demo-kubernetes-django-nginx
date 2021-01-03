@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-gunicorn
+  labels:
+    app: django-gunicorn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-gunicorn
+  template:
+    metadata:
+      labels:
+        app: django-gunicorn
+    spec:
+      containers:
+        - name: django-gunicorn
+          image: hongjinn/django_gunicorn
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret
+                  key: SECRET_KEY
+            - name: DJANGO_DEBUG
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret
+                  key: DJANGO_DEBUG
