@@ -1,3 +1,5 @@
+Deploy a Django site with k8s with minikube.
+
 ## Instructions
 
 ```
